@@ -2,6 +2,7 @@
   "name": "40violins",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
+  "description": "An all-in-one app to help with violin practice!",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",

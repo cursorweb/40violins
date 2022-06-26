@@ -1,13 +1,18 @@
 import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Alert, StyleSheet, Text, SafeAreaView, Image, Button } from 'react-native';
+import { Alert, StyleSheet, Text, SafeAreaView, Image } from 'react-native';
 
 export default function App() {
   const [count, setCount] = useState(0);
   const [dismiss, setDismiss] = useState(0);
   const [shouldDo, setShouldDo] = useState(true);
+  const [isPressed, setIsPressed] = useState(false);
 
   const update = () => {
+    setIsPressed(!isPressed);
+  };
+
+  const tick = () => {
     setCount(count + 1);
     if (shouldDo) {
       Alert.alert(
@@ -41,7 +46,7 @@ export default function App() {
       <Text>{count} : {dismiss} ratio</Text>
       <Image source={require("./assets/adaptive-icon.png")} style={styles.img} />
       <StatusBar hidden={true} />
-      <Text onPress={update} style={styles.btn}>Click me pseudo button</Text>
+      <Text onPress={tick} onPressIn={update} onPressOut={update} style={[styles.btn, isPressed ? styles.btnh : null]} suppressHighlighting={true}>Click me pseudo button</Text>
     </SafeAreaView>
   );
 }
@@ -63,5 +68,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     width: 80,
     borderRadius: 4,
+  },
+  btnh: {
+    backgroundColor: 'red',
   }
 });

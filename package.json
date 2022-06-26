@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "40violins",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
@@ -23,6 +24,5 @@
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.66.13",
     "typescript": "~4.3.5"
-  },
-  "private": true
+  }
 }

@@ -5,3 +5,9 @@
 - Metronome
 - Tuner
 - Practice Reminder
+
+## Run
+```
+npm i
+npm start
+```

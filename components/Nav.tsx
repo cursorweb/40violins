@@ -1,33 +1,30 @@
 import { ScrollView, StyleSheet, Text } from "react-native";
+import { useTheme } from "../theme/theme";
 
-export default function Nav({ changeBtn } : { changeBtn: (num: number) => void }) {
-  
-
+export default function Nav({ changeBtn }: { changeBtn: (num: number) => void }) {
   return (
-    <ScrollView style={styles.nav} horizontal={true} bounces={false}>
-      <Text style={styles.btn}>Stuff1</Text>
-      <Text style={styles.btn}>Stuff2</Text>
-      <Text style={styles.btn}>Stuff3</Text>
-      <Text style={styles.btn}>Stuff3</Text>
-      <Text style={styles.btn}>Stuff3</Text>
-      <Text style={styles.btn}>Stuff3</Text>
-      <Text style={styles.btn}>Stuff3</Text>
-      <Text style={styles.btn}>Stuff3</Text>
-      <Text style={styles.btn}>Stuff3</Text>
-      <Text style={styles.btn}>Stuff3</Text>
-      <Text style={styles.btn}>Stuff3</Text>
+    <ScrollView style={styles().nav} horizontal={true} bounces={false}>
+      {[...new Array(50)].map((_, i) => <Text key={i} style={styles().btn}>Stuff{i + 1}</Text>)}
     </ScrollView>
   );
 }
 
-const styles = StyleSheet.create({
-  btn: {
-    backgroundColor: "red",
-    padding: 10
-  },
-  nav: {
-    display: "flex",
-    flexDirection: "row",
-    backgroundColor: "orange"
-  }
-});
+const styles = () => {
+  const { theme } = useTheme();
+
+  return StyleSheet.create({
+    btn: {
+      backgroundColor: theme.primary,
+      color: theme.text,
+      padding: 10
+    },
+    nav: {
+      display: "flex",
+      flexDirection: "row",
+      position: "absolute",
+      bottom: 0,
+      height: 85,
+      width: "100%"
+    }
+  });
+};

@@ -3,10 +3,12 @@ import { ScrollView, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import TText from "./TText";
 import { apps } from "../apps/loader";
-import { useTheme } from "../theme/theme";
+import { Theme, useTheme } from "../theme/theme";
 
 
 export default function Nav({ changeBtn }: { changeBtn: (app: keyof typeof apps) => void }) {
+  const { theme } = useTheme();
+  const styles = () => _styles(theme);
   const keys = Object.keys(apps);
 
   let [selected, setSelected] = useState(0);
@@ -30,16 +32,16 @@ export default function Nav({ changeBtn }: { changeBtn: (app: keyof typeof apps)
           onPressOut={() => setHovered(null)}
           activeOpacity={1}
         >
-          <TText>{key.toUpperCase()}</TText>
+          <TText
+            style={i == selected ? styles().selectedText : null}
+          >{key.toUpperCase()}</TText>
         </TouchableOpacity>
       )}
     </ScrollView>
   );
 }
 
-const styles = () => {
-  const { theme } = useTheme();
-
+const _styles = (theme: Theme) => {
   return StyleSheet.create({
     btn: {
       backgroundColor: theme.primary,
@@ -48,7 +50,9 @@ const styles = () => {
       borderWidth: 5,
       borderColor: theme.primary,
       height: '100%',
-      borderRadius: 10
+      borderRadius: 10,
+      display: 'flex',
+      justifyContent: "center"
     },
     hovered: {
       backgroundColor: theme.primary2,
@@ -57,7 +61,9 @@ const styles = () => {
     selected: {
       backgroundColor: theme.primary,
       borderColor: theme.primary2,
-      fontWeight: "bold",
+    },
+    selectedText: {
+      color: "orange",
     },
     nav: {
       position: "absolute",

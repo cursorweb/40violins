@@ -27,7 +27,7 @@ export interface ThemeContextInterface {
   setTheme: Dispatch<SetStateAction<ThemeName>>
 }
 
-export const ThemeContext = React.createContext<ThemeContextInterface | null>(null);
+export const ThemeContext = React.createContext<ThemeContextInterface>({ theme: "light", setTheme: () => {} });
 
 export const ThemeProvider: React.FC = ({ children }) => {
   const scheme = useColorScheme();

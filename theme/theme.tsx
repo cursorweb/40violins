@@ -8,6 +8,7 @@ import { Dispatch } from "react";
 export interface Theme {
   background: string,
   primary: string,
+  primary2: string,
   secondary: string,
   text: string,
   dark: boolean

@@ -9,6 +9,7 @@ import { Theme, useTheme } from "../theme/theme";
 export default function Nav({ changeBtn }: { changeBtn: (app: keyof typeof apps) => void }) {
   const { theme } = useTheme();
   const styles = () => _styles(theme);
+
   const keys = Object.keys(apps);
 
   let [selected, setSelected] = useState(0);

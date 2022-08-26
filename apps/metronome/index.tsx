@@ -1,9 +1,12 @@
 import { Text, View, StyleSheet } from "react-native";
 
-export const Metronome: React.FC = () => {
+import TText from "../../components/TText";
+
+
+export function Metronome() {
   return (
     <View>
-      <Text>Welcome to metronome</Text>
+      <TText>Welcome to metronome</TText>
     </View>
   );
 }

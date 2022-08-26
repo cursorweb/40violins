@@ -6,5 +6,5 @@ export const dark: Theme = {
   primary2: "#183b6e",
   secondary: "#473925",
   text: "#fff",
-  dark: false,
+  dark: true,
 };

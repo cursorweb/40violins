@@ -1,33 +1,33 @@
 import { StyleSheet, Text, SafeAreaView, View, StatusBar, Button } from 'react-native';
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 
 import { ThemeName, ThemeProvider, useTheme } from './theme/theme';
 
+import TText from './components/TText';
 import Nav from './components/Nav';
 
-import { Metronome } from './apps/metronome';
-import { Tuner } from './apps/tuner';
+import { apps } from './apps/loader';
 
 
 function Main() {
-  const { setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
-  let curItem: ReactElement = <Metronome />;
-  function changePage() {
-    // change which thing is being shown...
+  let [currPage, setCurrPage] = useState<ReactElement>(apps.metronome);
+  function changePage(app: keyof typeof apps) {
+    setCurrPage(apps[app]);
   }
 
   return (
     <View style={styles().body}>
       <StatusBar
-        barStyle="dark-content"
+        barStyle={theme.dark ? "light-content" : "dark-content"}
       />
 
       <SafeAreaView>
         <View style={styles().main}>
-          <Text>40 Violins</Text>
+          <TText>40 Violins</TText>
           <View>
-            {curItem}
+            {currPage}
           </View>
           <Button title='change' onPress={() => setTheme((prev: ThemeName) => prev == "light" ? "dark" : "light")} />
         </View>

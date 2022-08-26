@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { ScrollView, StyleSheet, Text, TouchableOpacity } from "react-native";
+
+import TText from "./TText";
 import { apps } from "../apps/loader";
 import { useTheme } from "../theme/theme";
 
-export default function Nav({ changeBtn }: { changeBtn: (num: number) => void }) {
+
+export default function Nav({ changeBtn }: { changeBtn: (app: keyof typeof apps) => void }) {
+  const keys = Object.keys(apps);
+
   let [selected, setSelected] = useState(0);
   let [hovered, setHovered] = useState<number | null>(null);
 
   return (
     <ScrollView style={styles().nav} contentContainerStyle={styles().alignNav} horizontal={true} bounces={false}>
-      {Object.keys(apps).map((key, i) =>
+      {keys.map((key, i) =>
         <TouchableOpacity
           key={i}
           style={[
@@ -18,11 +23,14 @@ export default function Nav({ changeBtn }: { changeBtn: (num: number) => void })
             i == hovered ? styles().hovered : null,
           ]}
           onPressIn={() => setHovered(i)}
-          onPress={() => setSelected(i)}
+          onPress={() => {
+            setSelected(i);
+            changeBtn(keys[i] as keyof typeof apps);
+          }}
           onPressOut={() => setHovered(null)}
           activeOpacity={1}
         >
-          <Text>{key.toUpperCase()}</Text>
+          <TText>{key.toUpperCase()}</TText>
         </TouchableOpacity>
       )}
     </ScrollView>

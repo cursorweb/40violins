@@ -1,8 +1,9 @@
-import React, { SetStateAction, useContext, useEffect, useState } from "react";
+import React, { SetStateAction, useContext, useState } from "react";
 import { useColorScheme } from "react-native";
 import { light } from "./light";
 import { dark } from "./dark";
 import { Dispatch } from "react";
+
 
 export interface Theme {
   background: string,
@@ -18,6 +19,7 @@ export const themes = {
 };
 
 export type ThemeName = keyof typeof themes;
+
 
 export interface ThemeContextInterface {
   theme: ThemeName,
@@ -39,7 +41,7 @@ export const ThemeProvider: React.FC = ({ children }) => {
   );
 }
 
-export const useTheme = () => {
+export function useTheme() {
   const { theme, setTheme } = useContext(ThemeContext)!;
 
   switch (theme) {

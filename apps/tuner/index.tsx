@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
 
-export default function Tuner() {
+export const Tuner: React.FC = () => {
   return (
     <View>
 

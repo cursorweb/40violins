@@ -1,6 +1,6 @@
 import { Text, View, StyleSheet } from "react-native";
 
-export default function Metronome() {
+export const Metronome: React.FC = () => {
   return (
     <View>
       <Text>Welcome to metronome</Text>

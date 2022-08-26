@@ -5,8 +5,8 @@ import { ThemeName, ThemeProvider, useTheme } from './theme/theme';
 
 import Nav from './components/Nav';
 
-import Metronome from './components/metronome';
-import Tuner from './components/tuner';
+import { Metronome } from './apps/metronome';
+import { Tuner } from './apps/tuner';
 
 
 function Main() {
@@ -29,7 +29,7 @@ function Main() {
           <View>
             {curItem}
           </View>
-          <Button title='yo' onPress={() => setTheme((prev: ThemeName) => prev == "light" ? "dark" : "light")} />
+          <Button title='change' onPress={() => setTheme((prev: ThemeName) => prev == "light" ? "dark" : "light")} />
         </View>
       </SafeAreaView>
 
